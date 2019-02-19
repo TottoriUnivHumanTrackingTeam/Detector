@@ -1,0 +1,4 @@
+{
+  "detectorNumber": 1,
+  "serverURL": "https://frozen-reef-58691.herokuapp.com/api/add/detectionData"
+}
