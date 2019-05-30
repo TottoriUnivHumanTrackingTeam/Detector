@@ -7,7 +7,16 @@ ABOUT : ビーコンレポジトリ
 'use strict';
 
 const Fs = require('fs');
-const Beacon = require('./Beacon.js');
+
+const Beacon = class Beacon {
+  constructor(detectorNumber, uuid, measuredPower, rssi, detectedTime) {
+    this.detectorNumber = detectorNumber;
+    this.beaconID = uuid;
+    this.measuredPower = measuredPower;
+    this.rssi = rssi;
+    this.detectedTime = detectedTime;
+  }
+}
 
 module.exports = class BeaconRepository {
   static makeNewData(bleacon, detectorNumber) {

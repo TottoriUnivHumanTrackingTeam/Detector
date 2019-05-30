@@ -10,15 +10,24 @@ ABOUT : 言わずと知れたメイン関数
 const Bleacon = require('bleacon');
 const Fs = require('fs');
 const Request = require('request');
+
 //import from original classes
-const Beacon = require('./src/Beacon.js');
-const BeaconRepository = require('./src/BeaconRepository.js');
+const BeaconRepository = require('./BeaconRepository');
 
 //input config
 const config = JSON.parse(Fs.readFileSync('/home/pi/detector/Config.json', 'utf-8'));
 const detectorNumber = config.detectorNumber;
 const serverURL = config.serverURL;
 
+// Polling
+setInterval(() => {
+  const putData = {
+      uri: pollingURL,
+      headers: { "Content-type": "application/json" },
+      json: { 'detectorNumber': detectorNumber, }
+    };
+  Request.put(putData, (error, response) => { if(!error) console.log(response.body) });
+}, 60000);
 
 //Start Beacon Scanning
 Bleacon.startScanning();
