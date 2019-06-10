@@ -22,10 +22,11 @@ const pollingURL = config.pollingURL;
 
 // Polling
 setInterval(() => {
+  console.log("Polling.");
   const putData = {
       uri: pollingURL,
       headers: { "Content-type": "application/json" },
-      json: { 'detectorNumber': String(detectorNumber), }
+      json: { 'detectorNumber': `${detectorNumber}`, }
     };
   Request.put(putData, (error, response) => { if(!error) console.log(response.body) });
 }, 60000);
