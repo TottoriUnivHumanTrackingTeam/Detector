@@ -10,15 +10,26 @@ ABOUT : 言わずと知れたメイン関数
 const Bleacon = require('bleacon');
 const Fs = require('fs');
 const Request = require('request');
+
 //import from original classes
-const Beacon = require('./src/Beacon.js');
-const BeaconRepository = require('./src/BeaconRepository.js');
+const BeaconRepository = require('./BeaconRepository');
 
 //input config
-const config = JSON.parse(Fs.readFileSync('/home/pi/detector/Config.json', 'utf-8'));
+const config = JSON.parse(Fs.readFileSync('/home/pi/Detector/Config.json', 'utf-8'));
 const detectorNumber = config.detectorNumber;
 const serverURL = config.serverURL;
+const pollingURL = config.pollingURL;
 
+// Polling
+setInterval(() => {
+  console.log("Polling.");
+  const putData = {
+      uri: pollingURL,
+      headers: { "Content-type": "application/json" },
+      json: { 'detectorNumber': `${detectorNumber}`, }
+    };
+  Request.put(putData, (error, response) => { if(!error) console.log(response.body) });
+}, 60000);
 
 //Start Beacon Scanning
 Bleacon.startScanning();
@@ -38,5 +49,5 @@ Bleacon.on("discover", function(bleacon) {
   Request.post(postData, (error, response) => {
     if(!error) console.log(response.body)
   });
-  console.log(BeaconRepository.logWriter("/home/pi/detector/log", beacon));
+  console.log(BeaconRepository.logWriter("/home/pi/Detector/log", beacon));
 });
