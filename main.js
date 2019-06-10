@@ -18,13 +18,14 @@ const BeaconRepository = require('./BeaconRepository');
 const config = JSON.parse(Fs.readFileSync('/home/pi/Detector/Config.json', 'utf-8'));
 const detectorNumber = config.detectorNumber;
 const serverURL = config.serverURL;
+const pollingURL = config.pollingURL;
 
 // Polling
 setInterval(() => {
   const putData = {
       uri: pollingURL,
       headers: { "Content-type": "application/json" },
-      json: { 'detectorNumber': detectorNumber, }
+      json: { 'detectorNumber': String(detectorNumber), }
     };
   Request.put(putData, (error, response) => { if(!error) console.log(response.body) });
 }, 60000);
@@ -47,5 +48,5 @@ Bleacon.on("discover", function(bleacon) {
   Request.post(postData, (error, response) => {
     if(!error) console.log(response.body)
   });
-  console.log(BeaconRepository.logWriter("/home/pi/detector/log", beacon));
+  console.log(BeaconRepository.logWriter("/home/pi/Detector/log", beacon));
 });
