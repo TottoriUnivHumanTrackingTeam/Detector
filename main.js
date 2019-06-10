@@ -15,7 +15,7 @@ const Request = require('request');
 const BeaconRepository = require('./BeaconRepository');
 
 //input config
-const config = JSON.parse(Fs.readFileSync('/home/pi/detector/Config.json', 'utf-8'));
+const config = JSON.parse(Fs.readFileSync('/home/pi/Detector/Config.json', 'utf-8'));
 const detectorNumber = config.detectorNumber;
 const serverURL = config.serverURL;
 
