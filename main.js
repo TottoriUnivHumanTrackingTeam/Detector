@@ -10,6 +10,7 @@ ABOUT : 言わずと知れたメイン関数
 const Bleacon = require('bleacon');
 const Fs = require('fs');
 const Request = require('request');
+const PiWifi = require('pi-wifi');
 
 //import from original classes
 const BeaconRepository = require('./BeaconRepository');
@@ -23,12 +24,22 @@ const pollingURL = config.pollingURL;
 // Polling
 setInterval(() => {
   console.log("Polling.");
-  const putData = {
+  piWifi.status('wlan0', function(err, status) {
+    if (err) {
+      return console.error(err.message);
+    }
+    const putData = {
       uri: pollingURL,
       headers: { "Content-type": "application/json" },
-      json: { 'detectorNumber': detectorNumber }
+      json: {
+        "detectorNumber": detectorNumber,
+        "IPAddress": status.ip,
+        "SSID": status.ssid
+      }
     };
   Request.put(putData, (error, response) => { if(!error) console.log(response.body) });
+  });
+
 }, 60000);
 
 //Start Beacon Scanning

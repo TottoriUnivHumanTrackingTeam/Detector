@@ -9,6 +9,7 @@
   "dependencies": {
     "bleacon": "latest",
     "fs": "latest",
+    "pi-wifi": "^1.2.0",
     "request": "latest"
   },
   "keywords": [],
