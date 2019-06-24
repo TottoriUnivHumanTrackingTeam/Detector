@@ -26,7 +26,7 @@ setInterval(() => {
   const putData = {
       uri: pollingURL,
       headers: { "Content-type": "application/json" },
-      json: { 'detectorNumber': `${detectorNumber}`, }
+      json: { 'detectorNumber': detectorNumber }
     };
   Request.put(putData, (error, response) => { if(!error) console.log(response.body) });
 }, 60000);
