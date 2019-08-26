@@ -43,22 +43,31 @@ setInterval(() => {
 }, 60000);
 
 //Start Beacon Scanning
+let beaconData = [];
 Bleacon.startScanning();
 Bleacon.on("discover", function(bleacon) {
   const beacon = BeaconRepository.makeNewData(bleacon, detectorNumber);
-  const postData = {
-                    uri: serverURL,
-                    headers: { "Content-type": "application/json" },
-                    json: {
-                          'detectorNumber': beacon.detectorNumber,
-                          'beaconID': beacon.beaconID,
-                          'measuredPower': beacon.measuredPower,
-                          'rssi': beacon.rssi,
-                          'detectedTime': beacon.detectedTime
-                        }
-                    };
-  Request.post(postData, (error, response) => {
-    if(!error) console.log(response.body)
-  });
+  const oneBeaconData = {
+                        'detectorNumber': beacon.detectorNumber,
+                        'beaconID': beacon.beaconID,
+                        'measuredPower': beacon.measuredPower,
+                        'rssi': beacon.rssi,
+                        'detectedTime': beacon.detectedTime
+                      };
+  beaconData.push(oneBeaconData);
   console.log(BeaconRepository.logWriter("/home/pi/Detector/log", beacon));
 });
+
+setInterval(() => {
+  if (beaconData.length != 0){
+    const postData = {
+                      uri: serverURL,
+                      headers: { "Content-type": "application/json" },
+                      json: beaconData
+                      };
+    Request.post(postData, (error, response) => {
+      if(!error) console.log(response.body)
+    });
+    beaconData = [];
+  }
+},5000);
