@@ -5,6 +5,7 @@ AUTHOR: MakTak
 ABOUT : ビーコンレポジトリ
 -----*/
 "use strict";
+const fs = require("fs");
 
 const Beacon = class Beacon {
   constructor(detectorNumber, uuid, measuredPower, rssi) {

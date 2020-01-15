@@ -49,7 +49,7 @@ setInterval(() => {
 let beaconData = [];
 Bleacon.startScanning();
 Bleacon.on("discover", function(bleacon) {
-  const beacon = BeaconRepository.makeNewData(bleacon, detectorNumber);
+  const beacon = BeaconRepository.makeData(bleacon, detectorNumber);
   const oneBeaconData = beacon.decode();
   beaconData.push(oneBeaconData);
 });
