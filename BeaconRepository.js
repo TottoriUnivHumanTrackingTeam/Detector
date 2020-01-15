@@ -53,10 +53,7 @@ module.exports = class BeaconRepository {
   static async logWriter(filepath, dataList) {
     for (let data of dataList) {
       const log = String.raw`${data.detectorNumber},${data.beaconID},${data.measuredPower},${data.rssi},${data.detectedTime}`;
-      await fs.appendFilePromise(
-        filepath + "/" + this.makeFileName(),
-        log + "\n"
-      );
+      await appendFilePromise(filepath + "/" + this.makeFileName(), log + "\n");
       console.log(log);
     }
   }
