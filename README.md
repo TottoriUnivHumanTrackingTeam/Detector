@@ -15,5 +15,5 @@ npm install
 sudo node main.js
 ```
 
-詳しい技術解説は以下のドキュメントを参照してください。
-[Node.jsでiBeaconの距離推定する](https://qiita.com/MakTak/items/d9cde6ddc4422d6343f6)
+詳しい技術解説は[Node.jsでiBeaconの距離推定する](https://qiita.com/MakTak/items/d9cde6ddc4422d6343f6)を参照してください。
+
