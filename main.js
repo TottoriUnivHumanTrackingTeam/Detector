@@ -12,6 +12,8 @@ const fs = require("fs");
 const Request = require("request");
 const PiWifi = require("pi-wifi");
 
+const FormData = require('form-data')
+
 //import from original classes
 const BeaconRepository = require("./BeaconRepository");
 
@@ -22,6 +24,7 @@ const config = JSON.parse(
 const detectorNumber = config.detectorNumber;
 const serverURL = config.serverURL;
 const pollingURL = config.pollingURL;
+const uploadURL = config.uploadURL;
 
 // Polling
 setInterval(() => {
@@ -76,3 +79,27 @@ setInterval(() => {
     beaconData = [];
   }
 }, 5000);
+
+setTimeout(() => {
+  SendLogFile()
+}, 1000)
+
+function SendLogFile() {
+  const dt = new Date();
+  const y = dt.getFullYear();
+  const m = dt.getMonth()+1;
+  const d = dt.getDate();
+  const tmp = '/home/pi/Detector/log/test.log'
+  const logFile = `/home/pi/Detector/log/No${detectorNumber}_${y}_${m}_${d}.log`;
+  const formData = {
+    'file': fs.createReadStream(logFile)
+  };
+  const postData = {
+    uri: uploadURL,
+    "formData": formData
+  };
+
+  Request.post(postData, (err, res, body) => {
+    if(err) {console.log(err)}
+  })
+}
