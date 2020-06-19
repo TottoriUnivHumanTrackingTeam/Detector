@@ -82,14 +82,15 @@ setInterval(() => {
 
 setTimeout(() => {
   SendLogFile()
+  setInterval(() => SendLogFile(), 36400000)
 }, 1000)
 
 function SendLogFile() {
   const dt = new Date();
+  dt.setDate(dt.getDate()-1)
   const y = dt.getFullYear();
   const m = dt.getMonth()+1;
   const d = dt.getDate();
-  const tmp = '/home/pi/Detector/log/test.log'
   const logFile = `/home/pi/Detector/log/No${detectorNumber}_${y}_${m}_${d}.log`;
   const formData = {
     'file': fs.createReadStream(logFile)
