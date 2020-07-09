@@ -79,28 +79,3 @@ setInterval(() => {
     beaconData = [];
   }
 }, 5000);
-
-setTimeout(() => {
-  SendLogFile()
-  setInterval(() => SendLogFile(), 36400000)
-}, 1000)
-
-function SendLogFile() {
-  const dt = new Date();
-  dt.setDate(dt.getDate()-1)
-  const y = dt.getFullYear();
-  const m = dt.getMonth()+1;
-  const d = dt.getDate();
-  const logFile = `/home/pi/Detector/log/No${detectorNumber}_${y}_${m}_${d}.log`;
-  const formData = {
-    'file': fs.createReadStream(logFile)
-  };
-  const postData = {
-    uri: uploadURL,
-    "formData": formData
-  };
-
-  Request.post(postData, (err, res, body) => {
-    if(err) {console.log(err)}
-  })
-}

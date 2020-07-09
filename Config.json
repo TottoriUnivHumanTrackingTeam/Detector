@@ -1,6 +1,5 @@
 {
   "detectorNumber": 1,
   "serverURL": "http://192.168.11.3:3000/api/detectionData",
-  "pollingURL": "http://192.168.11.3:3000/api/detector/active",
-  "uploadURL": "http://192.168.11.3:3000/api/detectionData/log"
+  "pollingURL": "http://192.168.11.3:3000/api/detector/active"
 }
