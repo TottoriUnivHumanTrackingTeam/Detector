@@ -15,9 +15,9 @@ npm install
 sudo node main.js
 ```
 
-事前にConfig.jsonとroutine.shのdetectorNumberとDETECTORNUMBERを割り当てておく必要があります。
-routine.shにはcurlのIPを変更してください。
-また、以下のことをしてください。
+事前にConfig.jsonとroutine.shのdetectorNumberとDETECTORNUMBERを割り当てておき、IPを変更する必要があります。
+また、Detectorディレクトリ配下にlogフォルダを作成し、以下のことをしてください。
+
 ```crontab
 $ crontab -e
 
