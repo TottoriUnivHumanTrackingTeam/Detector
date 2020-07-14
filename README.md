@@ -16,6 +16,7 @@ sudo node main.js
 ```
 
 事前にConfig.jsonとroutine.shのdetectorNumberとDETECTORNUMBERを割り当てておく必要があります。
+routine.shにはcurlのIPを変更してください。
 また、以下のことをしてください。
 ```crontab
 $ crontab -e

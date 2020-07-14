@@ -12,8 +12,6 @@ const fs = require("fs");
 const Request = require("request");
 const PiWifi = require("pi-wifi");
 
-const FormData = require('form-data')
-
 //import from original classes
 const BeaconRepository = require("./BeaconRepository");
 
@@ -24,7 +22,6 @@ const config = JSON.parse(
 const detectorNumber = config.detectorNumber;
 const serverURL = config.serverURL;
 const pollingURL = config.pollingURL;
-const uploadURL = config.uploadURL;
 
 // Polling
 setInterval(() => {
