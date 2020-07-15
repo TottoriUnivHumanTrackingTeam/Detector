@@ -26,7 +26,7 @@ $ crontab -e
 #....
 #....
 
-0 0 0 * * /home/pi/Detector/routine.sh
+0 0 * * * /home/pi/Detector/routine.sh
 ```
 
 詳しい技術解説は[Node.jsでiBeaconの距離推定する](https://qiita.com/MakTak/items/d9cde6ddc4422d6343f6)を参照してください。
