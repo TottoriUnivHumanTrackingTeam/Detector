@@ -1,5 +1,5 @@
 {
   "detectorNumber": 1,
-  "serverURL": "http://192.168.12.1:3000/api/detectionData",
-  "pollingURL": "http://192.168.12.1:3000/api/detector/active"
+  "serverURL": "http://192.168.11.3:3000/api/detectionData",
+  "pollingURL": "http://192.168.11.3:3000/api/detector/active"
 }

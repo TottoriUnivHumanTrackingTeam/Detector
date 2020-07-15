@@ -15,5 +15,19 @@ npm install
 sudo node main.js
 ```
 
+事前にConfig.jsonとroutine.shのdetectorNumberとDETECTORNUMBERを割り当てておき、IPを変更する必要があります。
+また、Detectorディレクトリ配下にlogフォルダを作成し、以下のことをしてください。
+
+```crontab
+$ crontab -e
+
+.
+.
+#....
+#....
+
+0 0 * * * /home/pi/Detector/routine.sh
+```
+
 詳しい技術解説は[Node.jsでiBeaconの距離推定する](https://qiita.com/MakTak/items/d9cde6ddc4422d6343f6)を参照してください。
 

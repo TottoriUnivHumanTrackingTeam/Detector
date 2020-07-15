@@ -6,6 +6,9 @@ ABOUT : ビーコンレポジトリ
 -----*/
 "use strict";
 const fs = require("fs");
+const config = JSON.parse(
+  fs.readFileSync("/home/pi/Detector/Config.json", "utf-8")
+);
 
 const Beacon = class Beacon {
   constructor(detectorNumber, uuid, measuredPower, rssi) {
@@ -60,7 +63,7 @@ module.exports = class BeaconRepository {
 
   static makeFileName() {
     const d = new Date();
-    const fileName = String.raw`${d.getFullYear()}_${d.getMonth() +
+    const fileName = String.raw`No${config.detectorNumber}_${d.getFullYear()}_${d.getMonth() +
       1}_${d.getDate()}.log`;
     return fileName;
   }
